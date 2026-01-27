@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mr.mapper.UrUserMapper">
+
+    <!-- Result Map -->
+    <resultMap id="UserResult" type="com.mr.model.UrUser">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <!-- Select User By ID -->
+    <select id="selectUserById" resultMap="UserResult">
+        SELECT id, name, phone, email FROM ur_user WHERE id = #{id}
+    </select>
+
+    <!-- Select All Users -->
+    <select id="selectAllUsers" resultMap="UserResult">
+        SELECT id, name, phone, email FROM ur_user
+    </select>
+
+    <!-- Insert User -->
+    <insert id="insertUser">
+        INSERT INTO ur_user (name, phone, email) VALUES (#{name}, #{phone}, #{email})
+    </insert>
+
+    <!-- Update User -->
+    <update id="updateUser">
+        UPDATE ur_user SET name = #{name}, phone = #{phone} , email = #{email}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete User -->
+    <delete id="deleteUser">
+        DELETE FROM ur_user WHERE id = #{id}
+    </delete>
+</mapper>

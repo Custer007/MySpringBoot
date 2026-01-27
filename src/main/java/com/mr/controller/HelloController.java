@@ -36,11 +36,11 @@ public class HelloController {
         log.info("解析json格式值=：" + json);
 
 
-        Set<String> keys = template.keys("*");  //keys("*") 表示获取redis所有的键
+        /*Set<String> keys = template.keys("*");  //keys("*") 表示获取redis所有的键
         for (String key : keys) {
             String value = template.opsForValue().get(key);
             log.info("redis缓存key=" + key + ";value=" + value);
-        }
+        }*/
 
 
         ServletContext context = req.getServletContext();

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mr.mapper.StudentMapper">
+
+    <resultMap id="StudentResultMap" type="com.mr.model.Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="studentNo" column="student_no"/>
+        <result property="gender" column="gender"/>
+        <result property="className" column="class_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 根据ID查询学生 -->
+    <select id="selectStudentById" resultMap="StudentResultMap">
+        SELECT id, name, student_no, gender, class_name, create_time, update_time
+        FROM student
+        WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有学生 -->
+    <select id="selectAllStudents" resultMap="StudentResultMap">
+        SELECT id, name, student_no, gender, class_name, create_time, update_time
+        FROM student
+        ORDER BY id
+    </select>
+
+    <!-- 插入学生 -->
+    <insert id="insertStudent" parameterType="com.mr.model.Student" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO student (name, student_no, gender, class_name)
+        VALUES (#{name}, #{studentNo}, #{gender}, #{className})
+    </insert>
+
+    <!-- 更新学生 -->
+    <update id="updateStudent" parameterType="com.mr.model.Student">
+        UPDATE student
+        SET name = #{name},
+            student_no = #{studentNo},
+            gender = #{gender},
+            class_name = #{className}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除学生 -->
+    <delete id="deleteStudent">
+        DELETE FROM student WHERE id = #{id}
+    </delete>
+
+</mapper>

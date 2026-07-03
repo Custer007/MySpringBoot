@@ -1,16 +1,16 @@
 package com.mr.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mr.interfaces.TrackPoint;
 import com.mr.model.People;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.HashMap;
 
 /**
  *
@@ -23,14 +23,14 @@ public class HelloController {
     private People peo;
     @Autowired
     ObjectMapper objectMapper;
-    @Autowired
-    StringRedisTemplate template;// Redis驱动
+    /*@Autowired
+    StringRedisTemplate template;// Redis驱动*/
 
     @RequestMapping("hello")
     public String sayHello(HttpServletRequest req) throws Exception {
 
         peo.setAge(12);
-        peo.setName("梅西");
+        peo.setName("莱布尼茨");
 
         String json = objectMapper.writeValueAsString(peo);
         log.info("解析json格式值=：" + json);
@@ -42,6 +42,7 @@ public class HelloController {
             log.info("redis缓存key=" + key + ";value=" + value);
         }*/
 
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
 
         ServletContext context = req.getServletContext();
         Integer count = (Integer) context.getAttribute("count");

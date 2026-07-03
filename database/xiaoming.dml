@@ -1,0 +1,2 @@
+INSERT INTO `dataone`.`ur_user` (`id`, `name`, `phone`, `email`) VALUES ('1', '赵子龙', '19999999999', '9@qq.com');
+INSERT INTO `dataone`.`ur_user` (`id`, `name`, `phone`, `email`) VALUES ('2', '项羽', '11111111111', '1@qq.com');

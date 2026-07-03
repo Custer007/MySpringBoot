@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 // 运行时保留，支持反射解析
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CheckPoint {
+public @interface TrackPoint {
     // value属性，语法糖，不传默认空字符串
     String value() default "";
     // 是否打印请求参数，默认true

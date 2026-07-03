@@ -27,6 +27,7 @@ public class HelloController {
     StringRedisTemplate template;// Redis驱动*/
 
     @RequestMapping("hello")
+    @TrackPoint(value = "sayHello", desc = "听我说谢谢你因为有你", printParam = false)
     public String sayHello(HttpServletRequest req) throws Exception {
 
         peo.setAge(12);

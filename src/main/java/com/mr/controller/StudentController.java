@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 学生管理接口
+ */
 @RestController
 @RequestMapping("/student")
 @CrossOrigin

@@ -21,6 +21,10 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    /**
+     * 获取学生列表信息
+     * @return
+     */
     @GetMapping("/list")
     public Map<String, Object> getAllStudents() {
         Map<String, Object> result = new HashMap<>();

@@ -5,10 +5,6 @@ pipeline {
         maven 'M3'
     }
     environment {
-    // 重点：绕过ssh主机密钥校验，不需要容器里的known_hosts
-        GIT_SSH_COMMAND = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-        GIT_URL = 'git@github.com:Custer007/MySpringBoot.git'
-        GIT_CRED = 'github-ssh'
         DOCKER_REGISTRY = 'crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com/myboot'
         DOCKER_CRED = 'docker-repo-cred'
         IMAGE_NAME = 'demo/app'
@@ -16,11 +12,6 @@ pipeline {
         SSH_DEPLOY_ID = 'deploy-server'
     }
     stages {
-        stage('拉取GitHub代码') {
-            steps {
-                git url: "${GIT_URL}",credentialsId:"${GIT_CRED}",branch:'main'
-            }
-        }
         stage('Maven编译打包') {
             steps {
                 sh 'mvn clean package -DskipTests'

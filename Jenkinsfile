@@ -5,6 +5,8 @@ pipeline {
         maven 'M3'
     }
     environment {
+    // 重点：绕过ssh主机密钥校验，不需要容器里的known_hosts
+        GIT_SSH_COMMAND = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
         GIT_URL = 'git@github.com:Custer007/MySpringBoot.git'
         GIT_CRED = 'github-ssh'
         DOCKER_REGISTRY = 'crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com/myboot'

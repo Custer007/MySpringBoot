@@ -32,12 +32,20 @@ docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest
         }
         stage('SSH远程部署应用') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName:"${SSH_DEPLOY_ID}",transfers:[sshTransfer(execCommand:'''
-docker stop springboot-app || true
-docker rm springboot-app || true
-docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
-docker run -d --name springboot-app -p 8083:8083 --restart always ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
-''')])])
+                withCredentials([string(credentialsId: 'docker-repo-pwd', variable: 'ACR_PWD')]) {
+                    sshPublisher(publishers: [sshPublisherDesc(
+                                configName: "deploy-server",
+                                transfers: [sshTransfer(
+                                        sourceFiles: '',
+                                        execCommand: '''
+docker login crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com -u nick9992324307 -p ''' + "\"${ACR_PWD}\"" + '''
+docker rm -f my-springboot
+docker pull crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com/springboot-custer/demo-app:latest
+docker run -d --name my-springboot -p 8081:8083 crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com/springboot-custer/demo-app:latest
+'''
+                                    )]
+                            )])
+                }
             }
         }
     }

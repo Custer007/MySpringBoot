@@ -5,7 +5,7 @@ pipeline {
         maven 'M3'
     }
     environment {
-        DOCKER_REGISTRY = 'crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com/myboot'
+        DOCKER_REGISTRY = 'crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com/springboot-custer'
         DOCKER_CRED = 'docker-repo-cred'
         IMAGE_NAME = 'demo/app'
         IMAGE_TAG = "${env.BUILD_NUMBER}"

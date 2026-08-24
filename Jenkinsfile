@@ -36,7 +36,7 @@ docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest
 docker stop springboot-app || true
 docker rm springboot-app || true
 docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
-docker run -d --name springboot-app -p 8080:8080 --restart always ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+docker run -d --name springboot-app -p 8083:8083 --restart always ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
 ''')])])
             }
         }

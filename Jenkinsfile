@@ -32,11 +32,13 @@ docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest
         }
         stage('SSH远程部署应用') {
             steps {
+                //读取刚刚新建的秘密文本凭证 docker-repo-pwd
                 withCredentials([string(credentialsId: 'docker-repo-pwd', variable: 'ACR_PWD')]) {
                     sshPublisher(publishers: [sshPublisherDesc(
                                 configName: "deploy-server",
                                 transfers: [sshTransfer(
                                         sourceFiles: '',
+                                        // 下面全部是远端ECS服务器执行的shell
                                         execCommand: '''
 docker login crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com -u nick9992324307 -p ''' + "\"${ACR_PWD}\"" + '''
 docker rm -f my-springboot

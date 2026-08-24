@@ -21,7 +21,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId:"${DOCKER_CRED}",usernameVariable:'DOCKER_USER',passwordVariable:'DOCKER_PWD')]){
                     sh '''
-docker login ${DOCKER_REGISTRY} -u ${DOCKER_USER} -p ${DOCKER_PWD}
+docker login crpi-5mt3q7j246hdfcod.cn-guangzhou.personal.cr.aliyuncs.com -u ${DOCKER_USER} -p ${DOCKER_PWD}
 docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .
 docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
 docker tag ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest
